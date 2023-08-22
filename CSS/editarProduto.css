@@ -1,0 +1,118 @@
+body {
+    height: 100vh;
+}
+input {
+	width: 300px;
+	height: 48px;
+	margin-bottom: 20px;
+	color: #23561b;
+	font-size: 36px;
+    font-family: 'Averia Libre';
+}
+label {
+	color: #FFFFFF;
+	font-size: 36px;
+}
+select {
+    color: #23561b;
+	font-size: 36px;
+    font-family: 'Averia Libre';
+    width: 300px;
+}
+textarea {
+    color: #23561b;
+	font-size: 36px;
+    font-family: 'Averia Libre';
+    width: 300px;
+}
+fieldset {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* ESTILIZAÇÃO DAS IDS*/
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#imagem {
+	background-color: #23561b;
+    border: 1px solid #23561b;
+    box-sizing: border-box;
+    height: 47px;
+    width: 299px;
+	color:#FFFFFF;
+	font-family: 'Averia Libre';
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+#imagem-selecionada {
+	margin-bottom: 32px;
+}
+#botao-cadastrar {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Averia Libre';
+    padding: 12px;
+    margin-right: 20px;
+    background-color: #23561b;
+    border-radius: 5px;
+}
+#conteudo {
+    text-align: center;	
+}
+#botao-excluir {
+	background-image: url(../imagens/btnExcluir.png);
+	background-repeat: no-repeat;
+	background-position: 8px;
+	background-color: #FD7979;
+	color:#FFFFFF;
+	font-family: 'Averia Libre';
+	font-size: 24px;
+	border: none;
+	position: absolute;
+	width: 133px;
+	height: 44px;
+	left: 1285px;
+	top: 108px;
+	padding-left: 30px;
+}
+/* ESTILIZAÇÃO DAS CLASS*/
+.itemHeader {
+    color: #FFFFFF;
+    font-size: 48px;
+    margin: 10px;
+}
+.itemHeader button {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Averia Libre';
+    padding: 12px;
+    margin-right: 20px;
+    background-color: #23561b;
+    border-radius: 5px;
+}
+.div-labels {
+    padding-top: 10px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	width: 100%;
+}
+.left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 50%;
+	padding-right: 20px;
+}
+.rigth {
+	width: 50%;
+}

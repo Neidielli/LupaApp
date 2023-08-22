@@ -1,0 +1,40 @@
+/* Estilização das tags */
+main {
+    width: 100%;
+    height: 100%;
+}
+/* Estilização das class */
+.itemEmpresas {
+    background-color: #FFFFFF;
+    color: #23561b;
+    justify-content: center;
+    align-items: center;
+	text-align: center;
+    margin: 20px;
+    padding: 5px;
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+}
+.itemHeader {
+    color: #FFFFFF;
+    font-size: 48px;
+    margin: 10px;
+}
+/* Estilização das divs */
+#CardEmpresas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
