@@ -10,8 +10,7 @@ body {
     padding: 0px;
     margin: 0;
     border: 0;
-    /* width: 100vw;
-    height: calc(100vh - 90px); */
+    background-color: #DBD3C6;
 }
 main {
     background-color: #DBD3C6;
