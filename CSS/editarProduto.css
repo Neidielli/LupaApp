@@ -22,6 +22,7 @@ fieldset {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: none;
 }
 /* ESTILIZAÇÃO DAS IDS*/
 #header {
@@ -55,23 +56,8 @@ fieldset {
     border-radius: 5px;
 }
 #conteudo {
-    text-align: center;	
-}
-#botao-excluir {
-	background-image: url(../imagens/btnExcluir.png);
-	background-repeat: no-repeat;
-	background-position: 8px;
-	background-color: #FD7979;
-	color:#FFFFFF;
-	font-family: 'Averia Libre';
-	font-size: 24px;
-	border: none;
-	position: absolute;
-	width: 133px;
-	height: 44px;
-	left: 1285px;
-	top: 108px;
-	padding-left: 30px;
+    text-align: center;
+    margin-top: 25px;	
 }
 #marca {
     color: #23561b;

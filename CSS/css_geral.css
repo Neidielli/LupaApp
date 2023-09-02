@@ -1,10 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-/* * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    box-sizing: border-box
-} */
 body {
     font-family: "Averia Libre", cursive;
     padding: 0px;
@@ -13,7 +7,7 @@ body {
     background-color: #DBD3C6;
 }
 main {
-    background-color: #DBD3C6;
+    
     /* width: 100vw;
     height: 100vh; */
 }
