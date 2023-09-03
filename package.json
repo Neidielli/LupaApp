@@ -1,0 +1,26 @@
+{
+  "name": "lupaapp",
+  "version": "1.0.0",
+  "description": "Aplicação de Catálogo",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neidielli/LupaApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neidielli/LupaApp/issues"
+  },
+  "homepage": "https://github.com/Neidielli/LupaApp#readme",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    "electron": "^26.1.0"
+  }
+}
