@@ -6,6 +6,7 @@
       <link rel="stylesheet" type="text/css" href="./../css_geral.css">
       <link rel="stylesheet" type="text/css" href="./novoProduto.css">
    </head>
+
    <body>
       <header>
          <div id="header">
@@ -65,9 +66,23 @@
             </div>
             <div id="conteudo">
                <button class="botao-padrao" id="botao-cadastrar">Cadastrar</button>
+               <button class="botao-padrao" id="botao-cancelar">Cancelar</button>
             </div>
          </form>
       </main>
+
+      <div id="popUp" style="display: none;"> <!-- INICIO POP UP-->
+         </br>
+         </br>
+         <span>Deseja cancelar o cadastro do produto?</span>
+
+         <div id="divBotoes">
+            <div><button id="btnSim">SIM</button></div>
+            <div><button id="btnCancelar">NÃO</button></div>
+         </div>
+      </div> <!-- FIM POP UP-->
+
+      
       <script src="./novoProduto.js"></script>
    </body>
 </html>

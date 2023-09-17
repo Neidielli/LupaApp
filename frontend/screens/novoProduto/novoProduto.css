@@ -51,19 +51,80 @@ fieldset {
     font-size: 24px;
     font-family: 'Averia Libre';
     padding: 12px;
-    margin-right: 20px;
+    margin: 20px;
     background-color: #23561b;
     border-radius: 5px;
 }
+#botao-cancelar {
+	background-color: #f84848;
+	color:#FFFFFF;
+	font-family: 'Averia Libre';
+	font-size: 24px;
+    padding: 12px;
+    border-radius: 5px;
+}
 #conteudo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     text-align: center;
-    margin-top: 25px;	
+    margin-top: 25px;
+    border: 1px solid red;	
 }
 #marca {
     color: #23561b;
 	font-size: 36px;
     font-family: 'Averia Libre';
     width: 307px;
+}
+#divBotoes {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-top: 140px;
+	margin-bottom: 50px;
+}
+#popUp {
+	width: 600px;
+	background-color: #FFFFFF;
+	position: absolute;
+	top: calc(100vh / 2 - 100px);
+	left: calc(100vw / 2 - 300px);
+	display: none;
+	border: 0.5px solid grey;
+	border-radius: 5px;
+}
+#popUp span {
+	font-size: 26px;
+	color: #f84848;
+	margin-left: 30px;
+	margin-top: 200px;
+}
+#btnSim {
+	height: 65px;
+	width: 200px;
+	background-color: #f84848;
+	color: #FFFFFF;
+	font-size: 30px;
+    font-family: 'Averia Libre';
+	border-radius: 5px;
+}
+#btnSim:hover {
+	transform: scale(1.1);
+    transition: all 0.5s;
+}
+#btnCancelar {
+	height: 65px;
+	width: 200px;
+	background-color: #23561b;
+	color: #FFFFFF;
+	font-size: 30px;
+    font-family: 'Averia Libre';
+	border-radius: 5px;
+}
+#btnCancelar:hover {
+	transform: scale(1.1);
+    transition: all 0.5s;
 }
 /* ESTILIZAÇÃO DAS CLASS*/
 .itemHeader {

@@ -2,6 +2,15 @@ const { insertDatabase } = require("../../../database");
 const fs = require('fs');
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM carregada")
+    document.getElementById("botao-cancelar").addEventListener("click", () => {
+        document.getElementById("popUp").style.display = "block"
+    })
+    document.getElementById("btnSim").addEventListener("click", () => { })
+    document.getElementById("btnCancelar").addEventListener("click", () => {
+        document.getElementById("popUp").style.display = "none"
+    })
+
     const form = document.getElementById("meu-formulario");
 
     form.addEventListener("submit", async (event) => {

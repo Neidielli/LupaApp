@@ -55,9 +55,23 @@ fieldset {
     background-color: #23561b;
     border-radius: 5px;
 }
-#conteudo {
+#botao-cancelar {
     text-align: center;
-    margin-top: 25px;	
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Averia Libre';
+    padding: 12px;
+    margin: 20px;
+    background-color: #f84848;
+    border-radius: 5px;
+}
+#conteudo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin-top: 25px;
+    border: 1px solid red;	
 }
 #marca {
     color: #23561b;
