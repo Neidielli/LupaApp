@@ -69,9 +69,29 @@ main {
     border-radius: 5px;
 }
 input.pesquisa {
-	background-image: url(/imagens/icon-lupa.png);
+	background-image: url(/images/icon-lupa.png);
 	background-repeat: no-repeat;
 	background-position: 8px;
 	font-size: 24px;
     font-family: 'Averia Libre';
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+}
+
+.container button {
+    background-color: #23561b;
+	width: 100px;
+	height: 25px;
+	border: none;
+	color: #FFFFFF;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+input {
+    margin-right: 10px; /* Adicione margem à direita do input para separá-lo do botão */
 }

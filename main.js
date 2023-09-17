@@ -1,30 +1,31 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow } = require('electron');
+const { initializeDatabase, closeDatabase } = require("./database");
 
-var mainWindow = null;
-// Principal Window
-async function createWindow() {
-    mainWindow = new BrowserWindow({
-        width:800,
-        height:800,
-    });
+function createMainWindow() {
+  const mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
 
-    await mainWindow.loadFile('src/index.html')
+  mainWindow.loadFile('frontend/screens/index/index.html');
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+
+  return mainWindow;
 }
 
-// Template Menu
-const templateMenu = [
+app.on('ready', () => {
+  const mainWindow = createMainWindow();
 
-];
-// Menu
-const menu = Menu.buildFromTemplate(templateMenu);
-Menu.setApplicationMenu(menu);
+});
 
-// On Ready
-app.whenReady().then(createWindow);
-
-// Activate on MacOs
-app.on('activate', () => {
-    if(BrowserWindow.getAllWindows().length === 0){
-        createWindow();
-    }
-})
+app.on('window-all-closed', () => {
+  
+  app.quit();
+});

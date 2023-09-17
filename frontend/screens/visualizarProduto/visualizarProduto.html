@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Visualizar Produto</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./../css_geral.css">
+    <link rel="stylesheet" type="text/css" href="./visualizarProduto.css">
+
+</head>
+<script>
+    window.onload = () => {
+        document.getElementById("botao-excluir").addEventListener("click", () => {
+            document.getElementById("popUp").style.display = "block"
+        })
+        document.getElementById("btnSim").addEventListener("click", () => { excluir(id) })
+        document.getElementById("btnCancelar").addEventListener("click", () => {
+            document.getElementById("popUp").style.display = "none"
+        })
+    }
+</script>
+
+<body>
+
+    <header>
+        <div id="header">
+            <div class="itemHeader" onclick="window.location.href='../index/index.html';">
+                <img src="images/LupaLogo.png" width="65" height="65">
+                <span>Lupa</span>
+            </div>
+            <div class="itemHeader">
+                <button class="botao" onclick="window.location.href='../home/home.html';">Meus Produtos</button>
+                <button class="botao" onclick="window.location.href='../editarProdutos/editarProduto.html';">Editar</button>
+                <button id="botao-excluir">Excluir</button>
+            </div>
+        </div> <!-- Fim Header -->
+    </header>
+
+    <main>
+
+        <div id="flex">
+            <div id="flexInternoLeft">
+                <img src="images/doceSaborLogo.png" id="imagemProduto">
+            </div>
+
+            <div id="flexInternoRigth">
+                <h1 id="tituloProduto" ></h1>
+                <h1 id="precoProduto"></h1>
+                <h4 id="descricaoProduto"></h4>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="popUp" style="display: none;"> <!-- INICIO POP UP-->
+        </br>
+        </br>
+        <span>Tem certeza que deseja remover esse produto?</span>
+
+        <div id="divBotoes">
+            <div><button id="btnSim">SIM</button></div>
+            <div><button id="btnCancelar">CANCELAR</button></div>
+        </div>
+    </div> <!-- FIM POP UP-->
+    <script src="./visualizarProduto.js"></script>
+</body>
+
+
+</html>

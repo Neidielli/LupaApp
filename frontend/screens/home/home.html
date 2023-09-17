@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./../css_geral.css">
+    <link rel="stylesheet" type="text/css" href="./home.css">
+
+</head>
+
+<body>
+
+    <header>
+        <div id="header">
+            <div class="itemHeader" onclick="window.location.href='../index/index.html';">
+                <img src="./../../assets/images/LupaLogo.png" width="65" height="65">
+                <span>Lupa</span>
+            </div>
+            <div class="itemHeader">
+                <button onclick="window.location.href='../index/index.html';">Minhas Marcas</button>
+                <button onclick="window.location.href='../novoProduto/novoProduto.html';">Novo Produto</button>
+            </div>
+        </div> <!-- Fim Header -->
+    </header>
+
+    <main>
+
+        <div class="container">
+            <input class="pesquisa" id="pesquisa" type="text" placeholder="Pesquisar produto"
+                title="Digite o nome do produto">
+            <button id="pesquisar">Pesquisar</button>
+        </div>
+
+        <div id="CardProdutos"></div>
+    </main>
+    <script src="./home.js"></script>
+</body>
+
+</html>

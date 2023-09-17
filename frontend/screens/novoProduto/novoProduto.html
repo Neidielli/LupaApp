@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Novo Produto</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="./../css_geral.css">
+      <link rel="stylesheet" type="text/css" href="./novoProduto.css">
+   </head>
+   <body>
+      <header>
+         <div id="header">
+            <div class="itemHeader" onclick="window.location.href='../index/index.html';">
+               <img src="./../../assets/images/LupaLogo.png" width="65" height="65">
+               <span>Lupa</span>
+           </div>
+         </div>
+      </header>
+      <main>
+         <form id="meu-formulario">
+            <div class="div-labels">
+               <div class="left">
+                  <label for="produto">Produto</label>
+               </div>
+               <div class="rigth">
+                  <input type="text" name="produto" id="produto">
+               </div>
+            </div>
+            <div class="div-labels">
+               <div class="left">
+                  <label for="marca">Marca</label>
+               </div>
+               <div class="rigth">
+                  <select id="marca" name="marca">
+                     <option value="gusman">Gusman</option>
+                     <option value="pipoteca">Pipoteca</option>
+                     <option value="tintos">Tintos</option>
+                     <option value="doceSabor" selected>Doce Sabor</option>
+                     <option value="doces">Doces</option>
+                  </select>
+               </div>
+            </div>
+            <div class="div-labels">
+               <div class="left">
+                  <label for="preco">Preço</label>
+               </div>
+               <div class="rigth">
+                  <input type="text" name="preco" id="preco">
+               </div>
+            </div>
+            <div class="div-labels">
+               <div class="left">
+                  <label for="imagem">Imagem</label>
+               </div>
+               <div class="rigth">
+                  <input type="file" id="imagem" accept="image/*" />        
+               </div>
+            </div>
+            <div class="div-labels">
+               <div class="left">
+                  <label for="descricao">Descrição</label>
+               </div>
+               <div class="rigth">
+                  <textarea name="descricao" id="descricao"></textarea>
+               </div>
+            </div>
+            <div id="conteudo">
+               <button class="botao-padrao" id="botao-cadastrar">Cadastrar</button>
+            </div>
+         </form>
+      </main>
+      <script src="./novoProduto.js"></script>
+   </body>
+</html>
