@@ -1,5 +1,11 @@
 const { initializeDatabase, getProductById } = require("../../../database");
 
+document.addEventListener("DOMContentLoaded", () => {
+    
+    document.getElementById("meusProdutos").addEventListener("click", () => {
+        window.history.back();
+    })
+})
 function handleDatabaseError(error) {
     console.error('Erro ao buscar registros:', error);
 }

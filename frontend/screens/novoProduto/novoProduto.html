@@ -48,14 +48,19 @@
                   <input type="text" name="preco" id="preco">
                </div>
             </div>
+
             <div class="div-labels">
                <div class="left">
                   <label for="imagem">Imagem</label>
-               </div>
-               <div class="rigth">
-                  <input type="file" id="imagem" accept="image/*" />        
-               </div>
+                </div>
+                <div class="right" id="selecaoImagem">
+                  <label>Escolher arquivo
+                    <input type="file" id="imagem" accept="image/*" onchange="updateFileName(this)" />
+                  </label>
+                  <span id="file-name">Nenhum arquivo selecionado</span>
+                </div>
             </div>
+
             <div class="div-labels">
                <div class="left">
                   <label for="descricao">Descrição</label>
@@ -82,7 +87,16 @@
          </div>
       </div> <!-- FIM POP UP-->
 
-      
+      <script>
+         function updateFileName(input) {
+            const fileNameElement = document.getElementById('file-name');
+               if (input.files.length > 0) {
+                  fileNameElement.textContent = input.files[0].name;
+               } else {
+                  fileNameElement.textContent = 'Nenhum arquivo selecionado';
+               }
+         }
+      </script>
       <script src="./novoProduto.js"></script>
    </body>
 </html>
