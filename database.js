@@ -50,11 +50,11 @@ function insertDatabase(produto, marca, preco, imagem, descricao) {
     });
 }
 
-function getDatabase() {
-    const sql = `SELECT * FROM sua_tabela`;
+function getDatabaseByMarca(productMarca) {
+    const sql = "SELECT * FROM sua_tabela WHERE marca = ?";
 
     return new Promise((resolve, reject) => {
-        db.all(sql, [], (err, rows) => {
+        db.all(sql, [productMarca], (err, rows) => {
             if (err) {
                 reject(err.message);
             }
@@ -81,6 +81,6 @@ module.exports = {
     initializeDatabase,
     closeDatabase,
     insertDatabase,
-    getDatabase,
+    getDatabaseByMarca,
     getProductById
 };

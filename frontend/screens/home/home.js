@@ -1,4 +1,4 @@
-const { initializeDatabase, getDatabase } = require("../../../database");
+const { initializeDatabase, getDatabaseByMarca } = require("../../../database");
 
 function getImageSrc(produto) {
     return produto.imagem
@@ -30,7 +30,7 @@ function handleDatabaseError(error) {
 async function startScreen() {
     try {
         initializeDatabase();
-        const rows = await getDatabase();
+        const rows = await getDatabaseByMarca(window.location.search.split("=")[1].replace("%20"," "));
         if (rows && rows.length > 0) {
             createCards(rows);
         }
