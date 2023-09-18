@@ -50,6 +50,21 @@ function insertDatabase(produto, marca, preco, imagem, descricao) {
     });
 }
 
+function updateProduct(id, produto, marca, preco, imagem, descricao) {
+    initializeDatabase()
+    console.log(id, produto, marca, preco, imagem, descricao)
+    const sql = `UPDATE sua_tabela 
+                 SET produto = ?, marca = ?, preco = ?, imagem = ?, descricao = ? 
+                 WHERE id = ?`;
+
+    db.run(sql, [produto, marca, preco, imagem, descricao, id], function (err) {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log(`Registro atualizado com sucesso, ID: ${id}`);
+    });
+}
+
 function getDatabaseByMarca(productMarca) {
     const sql = "SELECT * FROM sua_tabela WHERE marca = ?";
 
@@ -64,6 +79,7 @@ function getDatabaseByMarca(productMarca) {
 }
 
 function getProductById(productId) {
+    initializeDatabase()
     const sql = `SELECT * FROM sua_tabela WHERE id = ?`;
 
     return new Promise((resolve, reject) => {
@@ -82,5 +98,6 @@ module.exports = {
     closeDatabase,
     insertDatabase,
     getDatabaseByMarca,
-    getProductById
+    getProductById,
+    updateProduct
 };

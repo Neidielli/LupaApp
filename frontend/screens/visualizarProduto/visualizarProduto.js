@@ -25,14 +25,28 @@ function createDescription(produto) {
 
 async function startScreen() {
     try {
-        await initializeDatabase();
+        initializeDatabase();
 
-        const productId = window.location.search.split("=")[1];
-        const row = await getProductById(parseInt(productId.match(/\d+/g)[0]));
-        createDescription(row); 
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+        console.log(urlParams)
+        console.log(productId)
+        
+        document.getElementById("botao-editar").addEventListener("click", () => {
+            window.location.href = `../novoProduto/novoProduto.html?mode=Editar&id=${productId}`;
+        });
+
+        if (!productId) {
+            console.error("O parâmetro 'id' não foi encontrado na URL.");
+            return;
+        }
+
+        const row = await getProductById(parseInt(productId));
+        createDescription(row);
     } catch (error) {
         handleDatabaseError(error);
     }
 }
+
 
 window.onload = startScreen;

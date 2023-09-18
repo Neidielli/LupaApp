@@ -10,7 +10,7 @@ function createCardHTML(produto) {
     const imageSrc = getImageSrc(produto);
 
     return `
-        <div class="itemProdutos" onclick="window.location.href='../visualizarProduto/visualizarProduto.html?id=${produto.id}}';">
+        <div class="itemProdutos" onclick="window.location.href='../visualizarProduto/visualizarProduto.html?id=${produto.id}';">
             <h1>${produto.produto}</h1>
             <button>${produto.preco}</button>
             <img src="${imageSrc}" width="175" height="150">
