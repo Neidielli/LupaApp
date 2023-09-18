@@ -50,9 +50,20 @@ function insertDatabase(produto, marca, preco, imagem, descricao) {
     });
 }
 
+function deleteProductById(productId) {
+    initializeDatabase();
+    const sql = `DELETE FROM sua_tabela WHERE id = ?`;
+
+    db.run(sql, [productId], function (err) {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log(`Registro apagado com sucesso, ID: ${productId}`);
+    });
+}
+
 function updateProduct(id, produto, marca, preco, imagem, descricao) {
     initializeDatabase()
-    console.log(id, produto, marca, preco, imagem, descricao)
     const sql = `UPDATE sua_tabela 
                  SET produto = ?, marca = ?, preco = ?, imagem = ?, descricao = ? 
                  WHERE id = ?`;
@@ -65,7 +76,8 @@ function updateProduct(id, produto, marca, preco, imagem, descricao) {
     });
 }
 
-function getDatabaseByMarca(productMarca) {
+function getProductByMarca(productMarca) {
+    initializeDatabase();
     const sql = "SELECT * FROM sua_tabela WHERE marca = ?";
 
     return new Promise((resolve, reject) => {
@@ -94,10 +106,11 @@ function getProductById(productId) {
 }
 
 module.exports = {
-    initializeDatabase,
     closeDatabase,
+    deleteProductById,
+    initializeDatabase,
     insertDatabase,
-    getDatabaseByMarca,
+    getProductByMarca,
     getProductById,
     updateProduct
 };

@@ -1,46 +1,57 @@
-const { initializeDatabase, getProductById } = require("../../../database");
+const {deleteProductById, getProductById} = require("../../../database");
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    document.getElementById("meusProdutos").addEventListener("click", () => {
-        window.history.back();
-    })
-})
 function handleDatabaseError(error) {
     console.error('Erro ao buscar registros:', error);
 }
 
 function getImageSrc(produto) {
-    return produto.imagem
-        ? `data:image/png;base64,${Buffer.from(produto.imagem).toString('base64')}`
-        : null; 
+    return produto.imagem ? `data:image/png;base64,${
+        Buffer.from(produto.imagem).toString('base64')
+    }` : null;
 }
 
 function createDescription(produto) {
-    document.getElementById("tituloProduto").textContent = produto.produto;
-    document.getElementById("precoProduto").textContent = produto.preco;
-    document.getElementById("descricaoProduto").textContent = produto.descricao;
-    document.getElementById("imagemProduto").src = getImageSrc(produto);
+    const tituloProduto = document.getElementById("tituloProduto");
+    const precoProduto = document.getElementById("precoProduto");
+    const descricaoProduto = document.getElementById("descricaoProduto");
+    const imagemProduto = document.getElementById("imagemProduto");
+
+    tituloProduto.textContent = produto.produto;
+    precoProduto.textContent = produto.preco;
+    descricaoProduto.textContent = produto.descricao;
+    imagemProduto.src = getImageSrc(produto);
+}
+
+function showPopup(display) {
+    const popUp = document.getElementById("popUp");
+    popUp.style.display = display;
 }
 
 async function startScreen() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+
+    if (! productId) {
+        console.error("O parâmetro 'id' não foi encontrado na URL.");
+        return;
+    }
+
+    const botaoExcluir = document.getElementById("botao-excluir");
+    const botaoEditar = document.getElementById("botao-editar");
+
+    botaoExcluir.addEventListener("click", () => showPopup("block"));
+
+    document.getElementById("btnSim").addEventListener("click", () => {
+        deleteProductById(productId);
+    });
+
+    document.getElementById("btnCancelar").addEventListener("click", () => showPopup("none"));
+
+    botaoEditar.addEventListener("click", () => {
+        window.location.href = `../novoProduto/novoProduto.html?mode=Editar&id=${productId}`;
+    });
+
     try {
-        initializeDatabase();
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get("id");
-        console.log(urlParams)
-        console.log(productId)
-        
-        document.getElementById("botao-editar").addEventListener("click", () => {
-            window.location.href = `../novoProduto/novoProduto.html?mode=Editar&id=${productId}`;
-        });
-
-        if (!productId) {
-            console.error("O parâmetro 'id' não foi encontrado na URL.");
-            return;
-        }
-
         const row = await getProductById(parseInt(productId));
         createDescription(row);
     } catch (error) {
@@ -48,5 +59,10 @@ async function startScreen() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("meusProdutos").addEventListener("click", () => {
+        window.history.back();
+    });
+});
 
 window.onload = startScreen;

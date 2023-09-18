@@ -1,19 +1,7 @@
 const {getProductById, insertDatabase, updateProduct} = require("../../../database");
 const fs = require('fs');
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    document.getElementById("botao-cancelar").addEventListener("click", () => {
-        document.getElementById("popUp").style.display = "block"
-    })
-    document.getElementById("btnSim").addEventListener("click", () => { 
-        document.getElementById("meu-formulario").reset();
-        window.history.back();
-    })
-    document.getElementById("btnCancelar").addEventListener("click", () => {
-        document.getElementById("popUp").style.display = "none"
-    })
-
+function initializeForm() {
     const form = document.getElementById("meu-formulario");
     const parametro = new URLSearchParams(window.location.search);
     const cadastrarButton = document.getElementById("botao-cadastrar");
@@ -22,6 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const preco = document.querySelector("#preco");
     const imagemInput = document.querySelector("#imagem");
     const descricao = document.querySelector("#descricao");
+    const cancelButton = document.getElementById("botao-cancelar");
+    const popup = document.getElementById("popUp");
+    const confirmButton = document.getElementById("btnSim");
+    const cancelButtonPopup = document.getElementById("btnCancelar");
+
+    cancelButton.addEventListener("click", () => {
+        popup.style.display = "block";
+    });
+
+    confirmButton.addEventListener("click", () => {
+        form.reset();
+        window.history.back();
+    });
+
+    cancelButtonPopup.addEventListener("click", () => {
+        popup.style.display = "none";
+    });
 
     const action = parametro.get("mode");
     cadastrarButton.textContent = action;
@@ -41,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 async function populateFormFields(itemId, produtoField, marcaField, precoField, descricaoField) {
     let produtoSelecionado = null;
     produtoSelecionado = await getProductById(parseInt(itemId));
-    console.log(produtoSelecionado)
     if (produtoSelecionado) {
         produtoField.value = produtoSelecionado.produto;
         marcaField.value = produtoSelecionado.marca;
