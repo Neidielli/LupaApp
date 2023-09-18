@@ -44,9 +44,7 @@ function initializeForm() {
     }
 
     form.addEventListener("submit", async (event) => {
-        if (!validateForm()) {
-            event.preventDefault(); // Impede o envio do formulário se a validação falhar
-        }
+        event.preventDefault();
         handleSubmit(action, itemId, produto, marca, preco, imagemInput, descricao);
     });
 }
@@ -66,15 +64,12 @@ async function handleSubmit(action, itemId, produto, marca, preco, imagemInput, 
     const imagem = await getImageFromInput(imagemInput);
 
     if (action === 'Cadastrar') {
-        await insertDatabase(produto.value, marca.value, preco.value, imagem, descricao.value);
-        document.getElementById("popUpOK").style.display = "block";
-        // try {
-        //     await insertDatabase(produto.value, marca.value, preco.value, imagem, descricao.value);
-        //     document.getElementById("popUpOK").style.display = "block";
-        // } catch (error) {
-        //     console.error('Erro ao cadastrar o produto:', error);
-        //     // Lidar com erros de inserção aqui, se necessário
-        // }
+        try {
+            await insertDatabase(produto.value, marca.value, preco.value, imagem, descricao.value);
+            document.getElementById("popUpOK").style.display = "block";
+        } catch (error) {
+            console.error('Erro ao cadastrar o produto:', error);
+        }
     } else {
         updateProduct(itemId, produto.value, marca.value, preco.value, imagem, descricao.value);
     }
