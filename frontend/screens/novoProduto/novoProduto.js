@@ -33,7 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(imagem);
         }
 
-        insertDatabase(produto, marca, preco, imagem, descricao);
+        await insertDatabase(produto, marca, preco, imagem, descricao);
+        window.history.back();
         
     });
 });
