@@ -71,7 +71,13 @@ async function handleSubmit(action, itemId, produto, marca, preco, imagemInput, 
             console.error('Erro ao cadastrar o produto:', error);
         }
     } else {
-        updateProduct(itemId, produto.value, marca.value, preco.value, imagem, descricao.value);
+        try {
+            await updateProduct(itemId, produto.value, marca.value, preco.value, imagem, descricao.value);
+            document.getElementById("popUpOK").style.display = "block";
+        } catch (error) {
+            console.error('Erro ao cadastrar o produto:', error);
+        }
+        
     }
 }
 
