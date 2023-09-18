@@ -105,12 +105,27 @@ function getProductById(productId) {
     });
 }
 
+function getProductByNameAndMarca(productName, productMarca) {
+    initializeDatabase();
+    const sql = "SELECT * FROM sua_tabela WHERE produto LIKE ? AND marca = ?";
+
+    return new Promise((resolve, reject) => {
+        db.all(sql, [`%${productName}%`, productMarca], (err, rows) => {
+            if (err) {
+                reject(err.message);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 module.exports = {
     closeDatabase,
     deleteProductById,
+    getProductById,
+    getProductByNameAndMarca,
+    getProductByMarca,
     initializeDatabase,
     insertDatabase,
-    getProductByMarca,
-    getProductById,
     updateProduct
 };
