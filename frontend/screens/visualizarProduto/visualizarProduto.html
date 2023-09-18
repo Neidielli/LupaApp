@@ -9,15 +9,7 @@
 
 </head>
 <script>
-    window.onload = () => {
-        document.getElementById("botao-excluir").addEventListener("click", () => {
-            document.getElementById("popUp").style.display = "block"
-        })
-        document.getElementById("btnSim").addEventListener("click", () => { excluir(id) })
-        document.getElementById("btnCancelar").addEventListener("click", () => {
-            document.getElementById("popUp").style.display = "none"
-        })
-    }
+
 </script>
 
 <body>
@@ -29,8 +21,8 @@
                 <span>Lupa</span>
             </div>
             <div class="itemHeader">
+                <button class="botao" id="botao-editar">Editar</button>
                 <button class="botao" id="meusProdutos">Meus Produtos</button>
-                <button class="botao" onclick="window.location.href='../editarProdutos/editarProduto.html';">Editar</button>
                 <button id="botao-excluir">Excluir</button>
             </div>
         </div> <!-- Fim Header -->

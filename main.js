@@ -1,5 +1,4 @@
 const { app, BrowserWindow } = require('electron');
-const { initializeDatabase, closeDatabase } = require("./database");
 
 function createMainWindow() {
   const mainWindow = new BrowserWindow({

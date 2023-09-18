@@ -50,7 +50,34 @@ function insertDatabase(produto, marca, preco, imagem, descricao) {
     });
 }
 
-function getDatabaseByMarca(productMarca) {
+function deleteProductById(productId) {
+    initializeDatabase();
+    const sql = `DELETE FROM sua_tabela WHERE id = ?`;
+
+    db.run(sql, [productId], function (err) {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log(`Registro apagado com sucesso, ID: ${productId}`);
+    });
+}
+
+function updateProduct(id, produto, marca, preco, imagem, descricao) {
+    initializeDatabase()
+    const sql = `UPDATE sua_tabela 
+                 SET produto = ?, marca = ?, preco = ?, imagem = ?, descricao = ? 
+                 WHERE id = ?`;
+
+    db.run(sql, [produto, marca, preco, imagem, descricao, id], function (err) {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log(`Registro atualizado com sucesso, ID: ${id}`);
+    });
+}
+
+function getProductByMarca(productMarca) {
+    initializeDatabase();
     const sql = "SELECT * FROM sua_tabela WHERE marca = ?";
 
     return new Promise((resolve, reject) => {
@@ -64,6 +91,7 @@ function getDatabaseByMarca(productMarca) {
 }
 
 function getProductById(productId) {
+    initializeDatabase()
     const sql = `SELECT * FROM sua_tabela WHERE id = ?`;
 
     return new Promise((resolve, reject) => {
@@ -77,10 +105,27 @@ function getProductById(productId) {
     });
 }
 
+function getProductByNameAndMarca(productName, productMarca) {
+    initializeDatabase();
+    const sql = "SELECT * FROM sua_tabela WHERE produto LIKE ? AND marca = ?";
+
+    return new Promise((resolve, reject) => {
+        db.all(sql, [`%${productName}%`, productMarca], (err, rows) => {
+            if (err) {
+                reject(err.message);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 module.exports = {
-    initializeDatabase,
     closeDatabase,
+    deleteProductById,
+    getProductById,
+    getProductByNameAndMarca,
+    getProductByMarca,
+    initializeDatabase,
     insertDatabase,
-    getDatabaseByMarca,
-    getProductById
+    updateProduct
 };
