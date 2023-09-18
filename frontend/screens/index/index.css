@@ -17,9 +17,28 @@
     border-radius: 10px;
 }
 .itemHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     color: #FFFFFF;
     font-size: 48px;
     margin: 10px;
+}
+.itemHeader button {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Averia Libre';
+    padding: 12px;
+    margin-right: 20px;
+    background-color: #23561b;
+    border-radius: 5px;
+}
+.itemHeader button:hover {
+    background-color: #23561b;
+    cursor: pointer;
+	transform: scale(1.1);
+    transition: all 0.5s;
 }
 /* Estilização das divs */
 #CardEmpresas {
@@ -35,6 +54,6 @@
 #header {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }

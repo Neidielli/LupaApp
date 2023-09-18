@@ -10,7 +10,7 @@
    <body>
       <header>
          <div id="header">
-            <div class="itemHeader" onclick="window.location.href='../index/index.html';">
+            <div class="itemHeader" onclick="window.history.back();">
                <img src="./../../assets/images/LupaLogo.png" width="65" height="65">
                <span>Lupa</span>
            </div>
@@ -23,7 +23,7 @@
                   <label for="produto">Produto</label>
                </div>
                <div class="rigth">
-                  <input type="text" name="produto" id="produto">
+                  <input type="text" name="produto" id="produto" required>
                </div>
             </div>
             <div class="div-labels">
@@ -45,7 +45,7 @@
                   <label for="preco">Preço</label>
                </div>
                <div class="rigth">
-                  <input type="text" name="preco" id="preco">
+                  <input type="text" name="preco" id="preco" required oninput="validatePriceInput(this)">
                </div>
             </div>
 
@@ -55,7 +55,7 @@
                 </div>
                 <div class="right" id="selecaoImagem">
                   <label>Escolher arquivo
-                    <input type="file" id="imagem" accept="image/*" onchange="updateFileName(this)" />
+                    <input type="file" id="imagem" accept="image/*" onchange="updateFileName(this)" required/>
                   </label>
                   <span id="file-name">Nenhum arquivo selecionado</span>
                 </div>
@@ -69,6 +69,7 @@
                   <textarea name="descricao" id="descricao"></textarea>
                </div>
             </div>
+
             <div id="conteudo">
                <button class="botao-padrao" id="botao-cadastrar"></button>
                <button class="botao-padrao" id="botao-cancelar">Cancelar</button>
@@ -85,7 +86,15 @@
             <div><button id="btnSim">SIM</button></div>
             <div><button id="btnCancelar">NÃO</button></div>
          </div>
-      </div> <!-- FIM POP UP-->
+      </div> <!-- FIM POP UP CANCELAR-->
+
+      <div id="popUpOK" style="display: none;"> <!-- INICIO POP UP-->
+         </br>
+         </br>
+         <span>Produto cadastrado com sucesso!!</span>
+
+         <div id="divOK"><button id="btnOK" onclick="window.history.back()">OK</button></div>
+      </div> <!-- FIM POP UP SUCESSO-->
 
       <script>
          function updateFileName(input) {

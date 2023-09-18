@@ -113,6 +113,22 @@ form {
 	margin-left: 30px;
 	margin-top: 200px;
 }
+#popUpOK {
+	width: 600px;
+	background-color: #FFFFFF;
+	position: absolute;
+	top: calc(100vh / 2 - 100px);
+	left: calc(100vw / 2 - 300px);
+	display: none;
+	border: 0.5px solid grey;
+	border-radius: 5px;
+}
+#popUpOK span {
+	font-size: 26px;
+	color: #f84848;
+	margin-left: 100px;
+	margin-top: 200px;
+}
 #btnSim {
     cursor: pointer;
 	height: 65px;
@@ -143,8 +159,38 @@ form {
 	transform: scale(1.1);
     transition: all 0.5s;
 }
+#divOK {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+#btnOK {
+    cursor: pointer;
+	height: 35px;
+	width: 100px;
+	background-color: #23561b;
+	color: #FFFFFF;
+	font-size: 30px;
+    font-family: 'Averia Libre';
+	border-radius: 5px;
+}
+#btnOK:hover {
+    cursor: pointer;
+	transform: scale(1.1);
+    transition: all 0.5s;
+}
+#lblAviso {
+	margin-left: calc(100vw / 2 - 120px);
+	font-size: 23px;
+	color: #FD7979;
+}
 /* ESTILIZAÇÃO DAS CLASS*/
 .itemHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     color: #FFFFFF;
     font-size: 48px;
     margin: 10px;

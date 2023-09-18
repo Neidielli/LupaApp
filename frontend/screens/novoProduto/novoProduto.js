@@ -1,6 +1,11 @@
 const {getProductById, insertDatabase, updateProduct} = require("../../../database");
 const fs = require('fs');
 
+function validatePriceInput(input) {
+    // Remove caracteres que não são números, pontos ou vírgulas
+    input.value = input.value.replace(/[^0-9.,]/g, '');
+}
+
 function initializeForm() {
     const form = document.getElementById("meu-formulario");
     const parametro = new URLSearchParams(window.location.search);
@@ -17,6 +22,7 @@ function initializeForm() {
 
     cancelButton.addEventListener("click", () => {
         popup.style.display = "block";
+        document.getElementById("popUpOK").style.display = "none";
     });
 
     confirmButton.addEventListener("click", () => {
@@ -38,7 +44,9 @@ function initializeForm() {
     }
 
     form.addEventListener("submit", async (event) => {
-        event.preventDefault();
+        if (!validateForm()) {
+            event.preventDefault(); // Impede o envio do formulário se a validação falhar
+        }
         handleSubmit(action, itemId, produto, marca, preco, imagemInput, descricao);
     });
 }
@@ -58,7 +66,15 @@ async function handleSubmit(action, itemId, produto, marca, preco, imagemInput, 
     const imagem = await getImageFromInput(imagemInput);
 
     if (action === 'Cadastrar') {
-        insertDatabase(produto.value, marca.value, preco.value, imagem, descricao.value);
+        await insertDatabase(produto.value, marca.value, preco.value, imagem, descricao.value);
+        document.getElementById("popUpOK").style.display = "block";
+        // try {
+        //     await insertDatabase(produto.value, marca.value, preco.value, imagem, descricao.value);
+        //     document.getElementById("popUpOK").style.display = "block";
+        // } catch (error) {
+        //     console.error('Erro ao cadastrar o produto:', error);
+        //     // Lidar com erros de inserção aqui, se necessário
+        // }
     } else {
         updateProduct(itemId, produto.value, marca.value, preco.value, imagem, descricao.value);
     }

@@ -17,7 +17,7 @@ function createDescription(produto) {
     const imagemProduto = document.getElementById("imagemProduto");
 
     tituloProduto.textContent = produto.produto;
-    precoProduto.textContent = produto.preco;
+    precoProduto.textContent = `R$ ${produto.preco}`;
     descricaoProduto.textContent = produto.descricao;
     imagemProduto.src = getImageSrc(produto);
 }

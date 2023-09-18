@@ -16,7 +16,7 @@ function createCardHTML(produto) {
             <h1>${
         produto.produto
     }</h1>
-            <button>${
+    <button>R$ ${
         produto.preco
     }</button>
             <img src="${imageSrc}" width="175" height="150">
@@ -63,6 +63,12 @@ async function startScreen() {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("pesquisar").addEventListener("click", performSearch);
+    document.getElementById("pesquisa").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            performSearch();
+        }
+    });
+
 });
 
 window.onload = startScreen;
