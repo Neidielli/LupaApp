@@ -1,9 +1,3 @@
-/* Estilização das tags */
-/* main {
-    width: 100%;
-    height: 100%;
-} */
-/* Estilização das class */
 .itemEmpresas {
     background-color: #FFFFFF;
     color: #23561b;
@@ -40,7 +34,6 @@
 	transform: scale(1.1);
     transition: all 0.5s;
 }
-/* Estilização das divs */
 #CardEmpresas {
     display: flex;
     flex-direction: row;

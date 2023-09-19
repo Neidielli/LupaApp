@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./../css_geral.css">
     <link rel="stylesheet" type="text/css" href="./index.css">
-    <link rel="stylesheet" type="text/css" href="./../home/home.css">
     <script src="index.js"></script>
-    <script src="../home/home.js"></script>
+
 </head>
 
 <!-- <script src="./../../../exportPDF.js"></script> -->
@@ -23,7 +22,7 @@
             </div>
             <div class="itemHeader">
                 <button onclick="window.location.href='../novoProduto/novoProduto.html?mode=Cadastrar';">Novo Produto</button>
-                <button id="exportPdf">Gerar Catálogo</button>
+                <button onclick="exportPdf()">Gerar Catálogo</button>
             </div>
         </div> <!-- Fim Header -->
 
@@ -57,58 +56,6 @@
 
 
     </main>
-
-    <script>
-        const { getProductById } = require("../../../database.js");
-        const fs = require('fs');
-        const PDFDocument = require('pdfkit');
-      
-        document.getElementById('exportPdf').addEventListener('click', async function () {
-          // Recupere os dados do banco de dados (por exemplo, uma lista de produtos)
-          const produto = await getProductById();
-      
-          // Crie um novo documento PDF
-          const doc = new PDFDocument();
-      
-          // Adicione dados ao documento PDF
-          doc.text('Catálogo Lupa');
-          doc.moveDown();
-
-          console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-      
-          // Gere HTML Dinamicamente  
-          function createCardHTML(produto) {
-            const imageSrc = getImageSrc(produto);
-
-            return `
-                <div class="itemProdutos">
-                    <h1>${produto.produto}</h1>
-                    <p>Marca: ${produto.marca}</p>
-                    <p>Preço: R$ ${produto.preco}</p>
-                    <p>Descrição: ${produto.descricao}</p>
-                    <button>R$ ${produto.preco}</button>
-                    <img src="${imageSrc}" width="175" height="150">
-                </div>
-            `;
-
-            console.log("entrando na funcao");
-          }
-
-            // div para exibir os cards
-            const listaProdutosDiv = document.getElementById('CardProdutos');
-
-          // Itere pelos dados e renderize os cards
-          produto.forEach((produto) => {
-            const cardHTML = createCardHTML(produto); // Chamando a função createCardHTML
-            doc.addHTML(cardHTML); // Adicionando o HTML do card ao PDF
-          });
-      
-          // Salve o PDF em um arquivo
-          doc.pipe(fs.createWriteStream('Catalogo.pdf'));
-          doc.end();
-        });
-      </script>
-      
 </body>
 
 </html>

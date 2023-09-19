@@ -119,9 +119,24 @@ function getProductByNameAndMarca(productName, productMarca) {
     });
 }
 
+function getAllProducts() {
+    initializeDatabase();
+    const sql = "SELECT * FROM sua_tabela";
+
+    return new Promise((resolve, reject) => {
+        db.all(sql, [], (err, rows) => {
+            if (err) {
+                reject(err.message);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 module.exports = {
     closeDatabase,
     deleteProductById,
+    getAllProducts,
     getProductById,
     getProductByNameAndMarca,
     getProductByMarca,
