@@ -43,6 +43,7 @@ async function startScreen() {
 
     document.getElementById("btnSim").addEventListener("click", () => {
         deleteProductById(productId);
+        showPopup("none");
     });
 
     document.getElementById("btnCancelar").addEventListener("click", () => showPopup("none"));
@@ -50,6 +51,7 @@ async function startScreen() {
     botaoEditar.addEventListener("click", () => {
         window.location.href = `../novoProduto/novoProduto.html?mode=Editar&id=${productId}`;
     });
+
 
     try {
         const row = await getProductById(parseInt(productId));
