@@ -8,7 +8,7 @@ function getImageSrc(produto) {
 }
 
 function readCssFile() {
-    const cssFilePath = path.join(__dirname, './../css_geral.css');
+    const cssFilePath = path.join(__dirname, './template.css');
     return fs.readFileSync(cssFilePath, 'utf-8');
 } 
 
@@ -41,6 +41,8 @@ async function exportPdf() {
     } catch (error) {
         handleDatabaseError(error);
     }
+
+    htmlContent = htmlContent + "</div></main><script src='./home.js'></script></body></html>";
 
     if (htmlContent.trim() !== '') {
         const pdfOptions = {

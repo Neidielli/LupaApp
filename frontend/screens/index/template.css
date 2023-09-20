@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+body {
+    font-family: "Averia Libre", cursive;
+    padding: 0px;
+    margin: 0;
+    border: 0;
+    background-color: #DBD3C6;
+    height: 100%;
+}
+
+/* Estilização das class */
+.itemProdutos {
+    background-color: #FFFFFF;
+    color: #23561b;
+    justify-content: center;
+    align-items: center;
+	text-align: center;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    padding: 5px;
+    max-width: 275px;
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid red;
+}
+.itemProdutos button {
+    background-color: #23561b;
+	width: 100px;
+	height: 25px;
+	border: none;
+	color: #FFFFFF;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}.itemHeader {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 48px;
+    margin: 10px;
+}
+/* Estilização das ids */
+#CardProdutos {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid red;
+}
+#header {
+    background-color: #713B1A;
+    display: flex;
+    justify-content: center; /* Centralizar horizontalmente */
+    align-items: center; /* Centralizar verticalmente */
+}
