@@ -17,16 +17,25 @@ function readHtmlFile() {
     return fs.readFileSync(htmlFilePath, 'utf-8');
 }
 
-function createCardHTML(produto) {
+function createCardHTML(produto, index) {
     const imageSrc = getImageSrc(produto);
 
-    return `
-        <div class="itemProdutos" onclick="redirecionar(${produto.id});">
+    let cardHTML = `
+    <td>
+        <div class="itemProdutos">
             <h1>${produto.produto}</h1>
+            <h4>${produto.marca}</h4>
             <button>R$ ${produto.preco}</button>
             <img src="${imageSrc}" width="175" height="150">
         </div>
+    </td>
     `;
+
+    if ((index + 1) % 3 === 0) {
+        cardHTML += '</tr><tr>';
+    }
+
+    return cardHTML;
 }
 
 async function exportPdf() {
@@ -36,13 +45,16 @@ async function exportPdf() {
     try {
         const rows = await getAllProducts();
         if (rows && rows.length > 0) {
-            htmlContent = htmlContent + rows.map(createCardHTML).join('');
+            // htmlContent = htmlContent + rows.map(createCardHTML).join('');
+            const cardsHTML = rows.map((produto, index) => createCardHTML(produto, index)).join('');
+            htmlContent = htmlContent + cardsHTML;
         }
     } catch (error) {
         handleDatabaseError(error);
     }
 
-    htmlContent = htmlContent + "</div></main><script src='./home.js'></script></body></html>";
+    // htmlContent = "</div></main><script src='./home.js'></script></body></html>" + htmlContent;
+    htmlContent = "</tr></table></body></html>" + htmlContent;
 
     if (htmlContent.trim() !== '') {
         const pdfOptions = {
