@@ -48,6 +48,7 @@ async function exportPdf() {
 
     try {
         const rows = await getAllProducts();
+        console.log(rows)
         if (rows && rows.length > 0) {
             const cardsHTML = rows.map((produto, index) => createCardHTML(produto, index)).join('');
             htmlContent = htmlContent + cardsHTML;
@@ -56,12 +57,13 @@ async function exportPdf() {
         handleDatabaseError(error);
     }
 
-    htmlContent = "</tr></table></body></html>" + htmlContent;
+    htmlContent =  htmlContent + "</tr></table></body></html>";
 
     if (htmlContent.trim() !== '') {
         const pdfOptions = {
             path: 'Catalogo.pdf',
-            format: 'Letter'
+            preferCSSPageSize: true,
+            printBackground: true
         };
         
         await page.setContent(htmlContent);

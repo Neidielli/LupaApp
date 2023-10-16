@@ -121,7 +121,7 @@ function getProductByNameAndMarca(productName, productMarca) {
 
 function getAllProducts() {
     initializeDatabase();
-    const sql = "SELECT * FROM sua_tabela";
+    const sql = "SELECT * FROM sua_tabela ORDER BY marca ASC";
 
     return new Promise((resolve, reject) => {
         db.all(sql, [], (err, rows) => {

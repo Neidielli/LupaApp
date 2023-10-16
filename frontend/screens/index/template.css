@@ -32,7 +32,9 @@ body {
     border: 1px solid blue;
 }
 .itemHeader {
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     color: #FFFFFF;
     font-size: 48px;
     margin: 10px;
@@ -50,8 +52,9 @@ body {
 #header {
     background-color: #000040;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 #logo {
     color: #00ff01;
