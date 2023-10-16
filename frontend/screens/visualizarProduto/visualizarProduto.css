@@ -59,15 +59,15 @@ main {
 	border-radius: 5px;
 }
 #tituloProduto {
-	color: #FFFFFF;
+	color: #00ff01;
 	font-size: 60px;
 }
 #precoProduto {
-	color: #FFFFFF;
+	color: #00ff01;
 	font-size: 50px;
 }
 #descricaoProduto {
-	color: #FFFFFF;
+	color: #00ff01;
 	font-size: 35px;
 }
 #divBotoes {

@@ -1,6 +1,5 @@
 const { getAllProducts } = require("../../../database.js");
 const fs = require('fs');
-const htmlToPdf = require('html-pdf');
 const path = require('path');
 const puppeteer = require('puppeteer');
 
@@ -27,7 +26,7 @@ function createCardHTML(produto, index) {
         <div class="itemProdutos">
             <h1>${produto.produto}</h1>
             <h4>${produto.marca}</h4>
-            <button>R$ ${produto.preco}</button>
+            <button style="background-color: #23561b; width: 100px; height: 25px; border: none; color: #FFFFFF; margin-bottom: 5px; border-radius: 5px;">R$ ${produto.preco}</button>
             <img src="${imageSrc}" width="175" height="150">
         </div>
     </td>

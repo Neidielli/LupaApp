@@ -12,8 +12,6 @@ body {
 .itemProdutos {
     background-color: #FFFFFF;
     color: #23561b;
-    /* justify-content: center;
-    align-items: center; */
     text-align: center;
     margin: 20px;
     padding: 5px;
@@ -49,29 +47,21 @@ body {
 }
 
 /* Estilização das ids */
-#CardProdutos {
-    display: flex;
-    flex-direction: row; 
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
 #header {
-    background-color: #713B1A;
+    background-color: #000040;
     display: flex;
     justify-content: center; 
     align-items: center; 
 }
+#logo {
+    color: #00ff01;
+}
 
+/* Estilização das tags */
 table {
     width: 100%; /* A tabela ocupará a largura total do PDF */
     table-layout: fixed; /* Evita que as células se expandam demais */
 }
-
 td {
     width: 33%; /* Cada célula ocupará cerca de um terço da largura */
     padding: 10px; /* Adicione preenchimento entre as células, conforme necessário */
