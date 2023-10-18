@@ -4,27 +4,31 @@
   "description": "Aplicação de Catálogo",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Neidielli/LupaApp.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Neidielli",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Neidielli/LupaApp/issues"
   },
   "homepage": "https://github.com/Neidielli/LupaApp#readme",
   "devDependencies": {
-    "electron": "^26.4.0",
-    "electron-builder": "^24.6.4",
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
+    "electron": "^27.0.0",
     "electron-debug": "^3.2.0"
   },
   "dependencies": {
-    "html-pdf": "^3.0.1",
-    "pdfkit": "^0.13.0",
+    "electron": "^27.0.0",
+    "electron-squirrel-startup": "^1.0.0",
     "puppeteer": "^21.3.8",
     "sqlite3": "^5.1.6"
   },
@@ -35,9 +39,7 @@
       "output": "dist"
     },
     "files": [
-      "**/*",
-      "node_modules/",
-      "node_modules/**"
+      "**/*"
     ]
   }
 }
