@@ -1,6 +1,5 @@
 const { app, BrowserWindow } = require('electron');
-const { getAllProducts } = import('./database.js');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
@@ -26,81 +25,85 @@ function createMainWindow() {
 
 app.on('ready', () => {
   const mainWindow = createMainWindow();
+
+  mainWindow.webContents.on('dom-ready', () => {
+    mainWindow.webContents.executeJavaScript(`
+      document.getElementById("exportPdfButton").addEventListener("click", async () => {
+        const { getAllProducts } = require('./../../../database.js');
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        const cssContent = readCssFile();
+        let htmlContent = readHtmlFile() + '<style>' + cssContent + '</style>';
+
+        try {
+            const rows = await getAllProducts();
+            console.log(rows)
+            if (rows && rows.length > 0) {
+                const cardsHTML = rows.map((produto, index) => createCardHTML(produto, index)).join('');
+                htmlContent = htmlContent + cardsHTML;
+            }
+        } catch (error) {
+            handleDatabaseError(error);
+        }
+
+        htmlContent =  htmlContent + "</tr></table></body></html>";
+
+        if (htmlContent.trim() !== '') {
+            const pdfOptions = {
+                path: 'Catalogo.pdf',
+                preferCSSPageSize: true,
+                printBackground: true
+            };
+            
+            await page.setContent(htmlContent);
+            await page.pdf(pdfOptions);
+
+            await browser.close();
+            console.log('PDF gerado com sucesso');
+        } else {
+            console.error('O conteúdo HTML está vazio. Nenhum PDF será gerado.');
+        }
+            });
+    `);
+  });
 });
 
 app.on('window-all-closed', () => {
   app.quit();
 });
 
-async function exportPdf() {
-  const executablePath = app.getPath('exe');
-  const browser = await puppeteer.launch(executablePath);
-  const page = await browser.newPage();
+function getImageSrc(produto) {
+  return produto.imagem ? `data:image/png;base64,${Buffer.from(produto.imagem).toString('base64')}` : 'path/to/default-image.png';
+}
 
-  const cssContent = readCssFile();
-  let htmlContent = readHtmlFile() + '<style>' + cssContent + '</style>';
+function readCssFile() {
+  const cssFilePath = path.join(__dirname, './template.css');
+  return fs.readFileSync(cssFilePath, 'utf-8');
+} 
 
-  try {
-    const rows = await getAllProducts();
-    console.log(rows)
-    if (rows && rows.length > 0) {
-      const cardsHTML = rows.map((produto, index) => createCardHTML(produto, index)).join('');
-      htmlContent = htmlContent + cardsHTML;
-    }
-  } catch (error) {
-    handleDatabaseError(error);
-  }
+function readHtmlFile() {
+  const htmlFilePath = path.join(__dirname, './template.html');
+  return fs.readFileSync(htmlFilePath, 'utf-8');
+}
 
-  htmlContent = htmlContent + "</tr></table></body></html>";
+function createCardHTML(produto, index) {
+  const imageSrc = getImageSrc(produto);
 
-  if (htmlContent.trim() !== '') {
-    const pdfOptions = {
-      path: 'Catalogo.pdf',
-      preferCSSPageSize: true,
-      printBackground: true
-    };
+  let cardHTML = `
+  <td>
+      <div class="itemProdutos">
+          <h1>${produto.produto}</h1>
+          <h4>${produto.marca}</h4>
+          <button style="background-color: #23561b; width: 100px; height: 25px; border: none; color: #FFFFFF; margin-bottom: 5px; border-radius: 5px;">R$ ${produto.preco}</button>
+          <img src="${imageSrc}" width="175" height="150">
+      </div>
+  </td>
+  `;
 
-    await page.setContent(htmlContent);
-    await page.pdf(pdfOptions);
-
-    await browser.close();
-    console.log('PDF gerado com sucesso');
-  } else {
-    console.error('O conteúdo HTML está vazio. Nenhum PDF será gerado.');
-  }
-
-  function readCssFile() {
-    const cssFilePath = path.join(__dirname, './template.css');
-    return fs.readFileSync(cssFilePath, 'utf-8');
-  }
-
-  function readHtmlFile() {
-    const htmlFilePath = path.join(__dirname, './template.html');
-    return fs.readFileSync(htmlFilePath, 'utf-8');
-  }
-
-  function getImageSrc(produto) {
-    return produto.imagem ? `data:image/png;base64,${Buffer.from(produto.imagem).toString('base64')}` : 'path/to/default-image.png';
-  }
-
-  function createCardHTML(produto, index) {
-    const imageSrc = getImageSrc(produto);
-
-    let cardHTML = `
-    <td>
-        <div class="itemProdutos">
-            <h1>${produto.produto}</h1>
-            <h4>${produto.marca}</h4>
-            <button style="background-color: #23561b; width: 100px; height: 25px; border: none; color: #FFFFFF; margin-bottom: 5px; border-radius: 5px;">R$ ${produto.preco}</button>
-            <img src="${imageSrc}" width="175" height="150">
-        </div>
-    </td>
-    `;
-
-    if ((index + 1) % 3 === 0) {
+  if ((index + 1) % 3 === 0) {
       cardHTML += '</tr><tr>';
-    }
-
-    return cardHTML;
   }
+
+  return cardHTML;
 }
