@@ -48,10 +48,11 @@ app.on('ready', () => {
         }
 
         htmlContent =  htmlContent + "</tr></table></body></html>";
-
+        pathPDF = path.join(__dirname,'..','..','..','..','..','..','Catalogo.pdf')
+        console.log(pathPDF)
         if (htmlContent.trim() !== '') {
             const pdfOptions = {
-                path: 'Catalogo.pdf',
+                path:  pathPDF,
                 preferCSSPageSize: true,
                 printBackground: true
             };
