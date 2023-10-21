@@ -1,7 +1,11 @@
 module.exports = {
   packagerConfig: {
-    asar: true,
-  },
+    asar: false,    
+    ignore: (file) => {
+      if (file === 'seu-banco-de-dados.db') {
+        return true;
+      }
+      return false;}},
   rebuildConfig: {},
   makers: [
     {
@@ -9,11 +13,5 @@ module.exports = {
       config: {
       }
     }
-  ],
-  plugins: [
-    {
-      name: '@electron-forge/plugin-auto-unpack-natives',
-      config: {},
-    },
   ],
 };

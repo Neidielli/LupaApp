@@ -1,5 +1,4 @@
 const { app, BrowserWindow } = require('electron');
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
@@ -30,7 +29,9 @@ app.on('ready', () => {
     mainWindow.webContents.executeJavaScript(`
       document.getElementById("exportPdfButton").addEventListener("click", async () => {
         const { getAllProducts } = require('./../../../database.js');
-        const browser = await puppeteer.launch();
+        const puppeteer = require('puppeteer-core');
+        console.log(__dirname)
+        const browser = await puppeteer.launch({ executablePath: path.join(__dirname, 'chrome-win64','chrome.exe') });
         const page = await browser.newPage();
 
         const cssContent = readCssFile();
@@ -38,7 +39,6 @@ app.on('ready', () => {
 
         try {
             const rows = await getAllProducts();
-            console.log(rows)
             if (rows && rows.length > 0) {
                 const cardsHTML = rows.map((produto, index) => createCardHTML(produto, index)).join('');
                 htmlContent = htmlContent + cardsHTML;
@@ -48,11 +48,9 @@ app.on('ready', () => {
         }
 
         htmlContent =  htmlContent + "</tr></table></body></html>";
-        pathPDF = path.join(__dirname,'..','..','..','..','..','..','Catalogo.pdf')
-        console.log(pathPDF)
         if (htmlContent.trim() !== '') {
             const pdfOptions = {
-                path:  pathPDF,
+                path:  path.join(__dirname,'..','..','..','..','..','..','Catalogo.pdf'),
                 preferCSSPageSize: true,
                 printBackground: true
             };
@@ -81,7 +79,7 @@ function getImageSrc(produto) {
 function readCssFile() {
   const cssFilePath = path.join(__dirname, './template.css');
   return fs.readFileSync(cssFilePath, 'utf-8');
-} 
+}
 
 function readHtmlFile() {
   const htmlFilePath = path.join(__dirname, './template.html');
@@ -103,7 +101,7 @@ function createCardHTML(produto, index) {
   `;
 
   if ((index + 1) % 3 === 0) {
-      cardHTML += '</tr><tr>';
+    cardHTML += '</tr><tr>';
   }
 
   return cardHTML;
