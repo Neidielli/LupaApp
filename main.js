@@ -32,11 +32,14 @@ app.on('ready', () => {
         const puppeteer = require('puppeteer-core');
 
         try {
+          const produtos = await getAllProducts();
+          console.log(produtos)
+          if(produtos.length > 0){
             const browser = await puppeteer.launch({ executablePath: path.join(__dirname, 'chrome-win64', 'chrome.exe') });
             const page = await browser.newPage();
-
+  
             let htmlContent = readFile("html") + '<style>' + readFile("css") + '</style>';
-            htmlContent = fillCards(htmlContent, await getAllProducts());
+            htmlContent = fillCards(htmlContent, produtos);
             await page.setContent(htmlContent + "</tr></table></body></html>");
             await page.pdf({
               path: path.join(__dirname, '..', '..', '..', '..', '..', '..', 'Catalogo.pdf'),
@@ -44,6 +47,7 @@ app.on('ready', () => {
               printBackground: true});
             await browser.close();
             console.log('PDF gerado com sucesso');
+          }
         } catch (error) {
             handleDatabaseError(error);
         }
