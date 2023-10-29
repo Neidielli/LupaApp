@@ -4,4 +4,7 @@
 # Ignorar a pasta "node_modules"
 /node_modules
 
+# Ignorar a pasta "Chrome"
+/frontend/screens/index/chrome-win64
+
 out/
