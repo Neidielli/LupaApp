@@ -64,13 +64,12 @@ function createCardHTML(produto, index) {
   let cardHTML = `
     <td>
         <div class="itemProdutos">
-            <h1>${produto.produto}</h1>
-            <h4>${produto.marca}</h4>
-            <button style="background-color: #23561b; width: 100px; height: 25px; border: none; color: #FFFFFF; margin-bottom: 5px; border-radius: 5px;">R$ ${produto.preco}</button>
-            <img src="${getImageSrc(produto)}" width="175" height="150">
+            <h1 id="nomeProduto">${produto.produto}</h1>
+            <h4 id="marcaProduto">${produto.marca}</h4>
+            <img id="imgProduto" src="${getImageSrc(produto)}" width="175" height="150">
         </div>
     </td>`;
-  if ((index + 1) % 3 === 0) {
+  if ((index + 1) % 2 === 0) {
     cardHTML += '</tr><tr>';
   }
 
