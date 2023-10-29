@@ -63,12 +63,20 @@ function deleteProductById(productId) {
 }
 
 function updateProduct(id, produto, marca, preco, imagem, descricao) {
-    initializeDatabase()
-    const sql = `UPDATE sua_tabela 
-                 SET produto = ?, marca = ?, preco = ?, imagem = ?, descricao = ? 
-                 WHERE id = ?`;
+    initializeDatabase();
+    let sql = `UPDATE sua_tabela 
+               SET produto = ?, marca = ?, preco = ?, descricao = ? 
+               WHERE id = ?`;
+    let params = [produto, marca, preco, descricao, id];
 
-    db.run(sql, [produto, marca, preco, imagem, descricao, id], function (err) {
+    if (imagem !== null && imagem !== '') {
+        sql = `UPDATE sua_tabela 
+               SET produto = ?, marca = ?, preco = ?, imagem = ?, descricao = ? 
+               WHERE id = ?`;
+        params.splice(3, 0, imagem); 
+    }
+
+    db.run(sql, params, function (err) {
         if (err) {
             return console.error(err.message);
         }
